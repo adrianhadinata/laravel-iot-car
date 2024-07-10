@@ -13,3 +13,7 @@ Route::get('/about', function () {
 Route::get('/', function () {
     return view('home', ['title' => 'Home']);
 });
+
+Route::get('/client', function () {
+    return view('client', ['title' => 'MQTT Client']);
+});

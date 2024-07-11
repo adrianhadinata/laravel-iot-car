@@ -16,13 +16,12 @@
   ```
 -->
   
-  <div class="bg-white p-4 mt-4 rounded-sm">
+  <x-card>
     
-    <h2 class="text-base font-semibold leading-7 text-gray-900">Broker Information</h2>
-    <p class="mt-1 text-sm leading-6 text-gray-600">Fill the requirement based on your broker</p>
+    <x-card-title>Broker Information</x-card-title>
+    <x-card-title-description>Fill the requirement based on your broker</x-card-title-description>
 
-    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-
+    <x-card-body>
       <div class="sm:col-span-3">
         <x-label for="host" is-required="true">Host / IP Address</x-label>
         <div class="mt-2">
@@ -62,18 +61,15 @@
         <x-button type="button" button-color="indigo" onclick="startConnect()" id="btnConnect">Connect</x-button>
         <x-button type="button" button-color="red" onclick="startDisconnect()" disabled="disabled" id="btnDisconnect">Disconnect</x-button>
       </div>
+    </x-card-body>
 
-    </div>
+  </x-card>
 
-  </div>
+  <x-card>
+    <x-card-title>Send Message</x-card-title>
+    <x-card-title-description>Send your topic and message through the broker</x-card-title-description>
 
-  <div class="bg-white p-4 mt-4 rounded-sm">
-
-    <h2 class="text-base font-semibold leading-7 text-gray-900">Send Message</h2>
-    <p class="mt-1 text-sm leading-6 text-gray-600">Send your topic and message through the broker</p>
-
-    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-
+    <x-card-body>
       <div class="col-span-full">
         <x-label for="topicForSend" is-required="true">Topic</x-label>
         <div class="mt-2">
@@ -91,24 +87,19 @@
       <div class="col-span-full">
         <x-button type="button" button-color="green" onclick="publishMessage()" id="btnSend">Send</x-button>
       </div>
+    </x-card-body>
+  </x-card>
 
-    </div>
+  <x-card>
+    <x-card-title>Receive Data</x-card-title>
+    <x-card-title-description>Listen to your topic</x-card-title-description>
 
-  </div>
-
-  <div class="bg-white p-4 mt-4 rounded-sm">
-
-    <h2 class="text-base font-semibold leading-7 text-gray-900">Receive Data</h2>
-    <p class="mt-1 text-sm leading-6 text-gray-600">Listen to your topic</p>
-
-    <div id="messageListener" class="w-full h-1/2 border-2 min-h-96 border-black mt-12">
-
-    </div>
-
+    <div id="messageListener" class="w-full h-1/2 border-2 min-h-96 border-black mt-12"></div>
+    
     <div class="col-span-full">
       <x-button type="button" button-color="gray" id="btnClear" onclick="clearLog()">Clear</x-button>
     </div>
-  </div>
+  </x-card>
 
   <script src={{ asset('js/mqtt/paho-mqtt.js') }}></script>
   <script src={{ asset('js/mqtt/client-mqtt.js') }}></script>

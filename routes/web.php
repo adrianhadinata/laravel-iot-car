@@ -17,3 +17,7 @@ Route::get('/', function () {
 Route::get('/client', function () {
     return view('client', ['title' => 'MQTT Client']);
 });
+
+Route::get('/remote', function () {
+    return view('remote', ['title' => 'Remote Control']);
+});

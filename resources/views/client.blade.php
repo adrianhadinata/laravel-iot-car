@@ -95,7 +95,7 @@
     <x-card-title-description>Listen to your topic</x-card-title-description>
 
     <div id="messageListener" class="w-full h-1/2 border-2 min-h-96 border-black mt-12"></div>
-    
+
     <div class="col-span-full">
       <x-button type="button" button-color="gray" id="btnClear" onclick="clearLog()">Clear</x-button>
     </div>

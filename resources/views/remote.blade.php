@@ -4,14 +4,21 @@
     <div x-data="{ isModalShow: true, isFirstModalShow: true }">
         <x-card-body margin-top="0" margin-bottom="10">
 
-            <div class="sm:col-span-3">
+            <div class="sm:col-span-2">
                 <x-label>Status</x-label>
                 <div class="mt-2">
                     <x-input-field type="text" name="status" id="status" value="Disconnected"></x-input-field>
                 </div>
             </div>
             
-            <div class="sm:col-span-3">
+            <div class="sm:col-span-2">
+                <x-label>Car Speed</x-label>
+                <div class="mt-2">
+                    <x-input-field type="number" name="speed" id="speed" value="100" ></x-input-field>
+                </div>
+            </div>
+
+            <div class="sm:col-span-2">
                 <x-label>Connection</x-label>
                 <div class="mt-2">
                     <x-button @click="isModalShow = !isModalShow" type="button" button-color="indigo" id="btnShowModal">Show</x-button>
@@ -224,8 +231,22 @@
             console.log(message.payloadString)
         }
 
-        function publishMessage(message) {
-            msg = message;
+        function publishMessage(message, speed) {
+
+            if(message == "Up") {
+                msg = "U";
+            } else if(message == "Left") {
+                msg = "L";
+            } else if(message == "Right") {
+                msg = "R";
+            } else if(message == "Down") {
+                msg = "D";
+            } else if(message == "Stop") {
+                msg = "S";
+            }
+
+            msg += speed;
+
             topic = document.getElementById("topic").value;
 
             message = new Paho.MQTT.Message(msg);
@@ -244,17 +265,16 @@
             document.getElementById("btnConnect").disabled = false;
         }
 
-        let interval;
-
         const startLogging = (direction) => {
-            interval = setInterval(() => {
-                publishMessage(direction);
-                console.log(direction);
-            }, 10);
+            speed = document.getElementById('speed').value;
+
+            publishMessage(direction, speed);
+            console.log(direction);
         };
 
         const stopLogging = () => {
-            clearInterval(interval);
+            publishMessage("Stop", 100);
+            console.log("Stop");
         };
 
         document.getElementById('up').addEventListener('mousedown', () => startLogging('Up'));
@@ -266,10 +286,5 @@
         document.getElementById('left').addEventListener('mouseup', stopLogging);
         document.getElementById('right').addEventListener('mouseup', stopLogging);
         document.getElementById('down').addEventListener('mouseup', stopLogging);
-
-        document.getElementById('up').addEventListener('mouseleave', stopLogging);
-        document.getElementById('left').addEventListener('mouseleave', stopLogging);
-        document.getElementById('right').addEventListener('mouseleave', stopLogging);
-        document.getElementById('down').addEventListener('mouseleave', stopLogging);
     </script>
 </x-layout>

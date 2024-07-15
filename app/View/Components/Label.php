@@ -21,6 +21,6 @@ class Label extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.label');
+        return view('components.forms.label');
     }
 }

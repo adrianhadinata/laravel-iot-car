@@ -6,13 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class card-title extends Component
+class Navlink extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public bool $active = false
+    ) {
         //
     }
 
@@ -21,6 +22,6 @@ class card-title extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.card-title');
+        return view('components.navigations.navlink');
     }
 }

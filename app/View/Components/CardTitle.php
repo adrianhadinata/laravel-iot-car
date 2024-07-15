@@ -6,15 +6,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CardBody extends Component
+class CardTitle extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public string $marginTop = '10',
-        public string $marginBottom = '0'
-    ) {
+    public function __construct()
+    {
         //
     }
 
@@ -23,6 +21,6 @@ class CardBody extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cards.card-body');
+        return view('components.cards.card-title');
     }
 }
